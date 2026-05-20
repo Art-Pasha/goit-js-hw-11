@@ -23,8 +23,7 @@ searchForm.addEventListener('submit', event => {
   showLoader();
 
   getImagesByQuery(query)
-    .then(data => {
-      hideLoader();
+    .then(data => {      
 
       if (data.hits.length === 0) {
         iziToast.error({
@@ -37,7 +36,7 @@ searchForm.addEventListener('submit', event => {
       createGallery(data.hits);
     })
     .catch(error => {
-      hideLoader();
+      
       console.error(error);
       iziToast.error({
         message: 'Something went wrong. Please try again later.',
@@ -45,6 +44,8 @@ searchForm.addEventListener('submit', event => {
       });
     })
     .finally(() => {
+      
+      hideLoader();
       searchForm.reset();
     });
 });
